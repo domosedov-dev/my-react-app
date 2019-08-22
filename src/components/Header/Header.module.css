@@ -1,0 +1,32 @@
+.logo {
+    display: block;
+    max-width: 50px;
+    animation: logo-spin infinite 2s linear;
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.header {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    align-items: center;
+    justify-items: center;
+    background-color: #455a64;
+    color: #00D8FF;
+    border-radius: 5px;
+}
+
+.title {
+    text-transform: uppercase;
+    font-family: Roboto;
+    font-weight: 300;
+}
+

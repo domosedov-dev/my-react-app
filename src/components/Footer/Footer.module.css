@@ -1,0 +1,10 @@
+.footer {
+    grid-area: footer;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    background-color: #455a64;
+    color: #00D8FF;
+    border-radius: 5px;
+}
