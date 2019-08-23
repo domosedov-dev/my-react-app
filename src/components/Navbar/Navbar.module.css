@@ -4,3 +4,13 @@
     background-color: #455a64;
     border-radius: 5px;
 }
+
+.link {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fafafa;
+}
+
+.link_active {
+    color: crimson;
+}

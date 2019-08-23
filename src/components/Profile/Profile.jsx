@@ -4,9 +4,9 @@ import Posts from "./Posts/Posts";
 
 const Profile = (props) => {
     return (
-        <main className={style.main}>
+        <div>
             <Posts/>
-        </main>
+        </div>
     );
 };
 
