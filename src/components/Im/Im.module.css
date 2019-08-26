@@ -1,0 +1,18 @@
+.im {
+    background-color: #0097a7;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogs {
+
+}
+
+.chat {
+    background-color: #558b2f;
+}
+
+
+
+

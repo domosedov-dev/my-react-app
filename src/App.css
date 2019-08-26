@@ -1,22 +1,22 @@
 .App {
-    /*text-align: center;*/
-    height: 100vh;
-    margin: 0;
-    display: grid;
-    grid-template-rows: 80px 1fr 60px;
-    grid-template-columns: 15% 1fr 10%;
-    grid-gap: 10px;
-    grid-template-areas: "header header header" "navbar main sidebar" "footer footer footer";
+  /*text-align: center;*/
+  height: 100vh;
+  margin: 0;
+  display: grid;
+  grid-template-rows: 80px 1fr 60px;
+  grid-template-columns: 15% 1fr 10%;
+  grid-gap: 10px;
+  grid-template-areas: "header header header" "navbar main sidebar" "footer footer footer";
 }
 
 body {
-    background-color: #000;
-    /*max-width: 1200px;*/
-    /*margin: 0 auto;*/
+  background-color: #000;
+  /*max-width: 1200px;*/
+  /*margin: 0 auto;*/
 }
 
 .App__main {
-    grid-area: main;
-    background-color: #3f51b5;
-    color: azure;
+  grid-area: main;
+  background-color: #3f51b5;
+  color: azure;
 }

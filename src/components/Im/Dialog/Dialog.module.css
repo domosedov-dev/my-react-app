@@ -1,0 +1,8 @@
+.dialog {
+    background-color: #ff5722;
+    margin: 5px;
+}
+
+.dialog_active {
+    color: chartreuse;
+}
