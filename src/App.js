@@ -9,7 +9,7 @@ import Profile from "./components/Profile/Profile";
 import Im from "./components/Im/Im";
 import News from "./components/News/News";
 
-function App() {
+function App(props) {
   return (
     <BrowserRouter>
       <div className="App">
@@ -17,8 +17,8 @@ function App() {
         <Navbar />
         <Sidebar />
         <main className="App__main">
-          <Route path="/profile" render={() => <Profile />} />
-          <Route path="/im" render={() => <Im />} />
+          <Route path="/profile" render={() => <Profile state={props.state.profilePage}/>} />
+          <Route path="/im" render={() => <Im state={props.state.imPage} />} />
           <Route path="/news" render={() => <News />} />
         </main>
         <Footer />
