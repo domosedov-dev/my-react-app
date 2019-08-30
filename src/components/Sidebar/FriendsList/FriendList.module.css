@@ -1,0 +1,6 @@
+.friendList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-inline-start: 0;
+    grid-gap: 5px;
+}

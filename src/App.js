@@ -15,9 +15,12 @@ function App(props) {
       <div className="App">
         <Header />
         <Navbar />
-        <Sidebar />
+        <Sidebar state={props.state.sidebar} />
         <main className="App__main">
-          <Route path="/profile" render={() => <Profile state={props.state.profilePage}/>} />
+          <Route
+            path="/profile"
+            render={() => <Profile state={props.state.profilePage} />}
+          />
           <Route path="/im" render={() => <Im state={props.state.imPage} />} />
           <Route path="/news" render={() => <News />} />
         </main>

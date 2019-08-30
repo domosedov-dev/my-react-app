@@ -1,0 +1,14 @@
+.friend {
+    list-style-type: none;
+    background-color: #ffff8d;
+    text-align: center;
+}
+
+h3 {
+    margin: 0;
+}
+
+img {
+    min-width: 50px;
+    max-width: 100%;
+}

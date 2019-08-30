@@ -21,6 +21,14 @@ const state = {
       { id: 3, message: "How are you?" },
       { id: 4, message: "Fine!" }
     ]
+  },
+  sidebar: {
+    friendsSidebar: [
+      { id: 1, name: "React", avatar: "https://cdn.svgporn.com/logos/react.svg" },
+      { id: 2, name: "Vue", avatar: "https://cdn.svgporn.com/logos/vue.svg" },
+      { id: 3, name: "Angular", avatar: "https://cdn.svgporn.com/logos/angular-icon.svg" },
+      { id: 4, name: "Svelte", avatar: "https://pbs.twimg.com/profile_images/1121395911849062400/7exmJEg4_400x400.png" }
+    ]
   }
 };
 
