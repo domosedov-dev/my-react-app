@@ -1,11 +1,14 @@
+import {rerender} from "../rerender";
+
 const state = {
   profilePage: {
     posts: [
-      { title: "Hello", content: "Post content number 1" },
-      { title: "News title", content: "Post content number 2" },
-      { title: "ReactJS", content: "Post content number 3" },
-      { title: "VueJS", content: "Post content number 4" }
-    ]
+      { id: 1, title: "Hello", content: "Post content number 1" },
+      { id: 2, title: "News title", content: "Post content number 2" },
+      { id: 3, title: "ReactJS", content: "Post content number 3" },
+      { id: 4, title: "VueJS", content: "Post content number 4" }
+    ],
+    newPostText: 'Test post'
   },
   imPage: {
     dialogs: [
@@ -31,5 +34,22 @@ const state = {
     ]
   }
 };
+
+export const addPost = () => {
+  let newPost = {
+    id: 5,
+    title: `${state.profilePage.newPostText} - title`,
+    content: `${state.profilePage.newPostText} - content`
+  };
+  state.profilePage.posts.push(newPost);
+  state.profilePage.newPostText = '';
+  rerender(state);
+};
+
+export const updateNewPostText = (newtext) => {
+  state.profilePage.newPostText = newtext;
+  rerender(state);
+};
+
 
 export default state;
