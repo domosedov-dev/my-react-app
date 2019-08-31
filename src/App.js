@@ -14,13 +14,13 @@ function App(props) {
     <div className="App">
       <Header />
       <Navbar />
-      <Sidebar state={props.store.getState().sidebar} />
+      <Sidebar state={props.state.sidebar} />
       <main className="App__main">
         <Route
           path="/profile"
-          render={() => <Profile profilePage={props.store.getState().profilePage} addPost={props.store.addPost} updateNewPostText={props.store.updateNewPostText}/>}
+          render={() => <Profile profilePage={props.state.profilePage} addPost={props.addPost} updateNewPostText={props.updateNewPostText}/>}
         />
-        <Route path="/im" render={() => <Im state={props.store.getState().imPage} />} />
+        <Route path="/im" render={() => <Im state={props.state.imPage} />} />
         <Route path="/news" render={() => <News />} />
       </main>
       <Footer />

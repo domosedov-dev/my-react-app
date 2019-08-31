@@ -1,5 +1,5 @@
 const Store = {
-  state: {
+  _state: {
     profilePage: {
       posts: [
         { id: 1, title: "Hello", content: "Post content number 1" },
@@ -36,32 +36,33 @@ const Store = {
 
   addPost() {
     let newPost = {
-      id: ++Store.getState().profilePage.posts.length,
-      title: `${Store.getState().profilePage.newPostText} - title`,
-      content: `${Store.getState().profilePage.newPostText} - content`
+      id: this._state.profilePage.posts.length + 1,
+      title: `${this._state.profilePage.newPostText} - title`,
+      content: `${this._state.profilePage.newPostText} - content`
     };
-    Store.getState().profilePage.posts.push(newPost);
-    Store.getState().profilePage.newPostText = '';
-    Store.rerender(this.state);
+    this._state.profilePage.posts.push(newPost);
+    this._state.profilePage.newPostText = '';
+    this._callSubscriber(this._state);
   },
 
   updateNewPostText(text) {
-    Store.getState().profilePage.newPostText = text;
-    Store.rerender(this.state);
+    this._state.profilePage.newPostText = text;
+    this._callSubscriber(this._state);
   },
 
   subscribe(observer) {
-    this.rerender = observer;
+    this._callSubscriber = observer;
   },
 
-  rerender() {
+  _callSubscriber() {
     console.log('State was changed!');
   },
 
   getState() {
-    return this.state;
+    return this._state;
   }
 
 };
 
 export default Store;
+window.store = Store;
