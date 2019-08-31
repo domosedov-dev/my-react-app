@@ -17,7 +17,6 @@ const Posts = props => {
 
   const addPost = () => {
     props.addPost();
-    // props.updateNewPostText('');
   };
 
   return (
