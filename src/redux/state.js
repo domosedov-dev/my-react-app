@@ -1,4 +1,6 @@
-import {rerender} from "../rerender";
+let rerender = () => {
+  console.log('State was changed!');
+};
 
 const state = {
   profilePage: {
@@ -49,6 +51,10 @@ export const addPost = () => {
 export const updateNewPostText = (newtext) => {
   state.profilePage.newPostText = newtext;
   rerender(state);
+};
+
+export const subscribe = (observer) => {
+  rerender = observer;
 };
 
 
