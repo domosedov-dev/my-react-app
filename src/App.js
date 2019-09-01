@@ -18,7 +18,12 @@ function App(props) {
       <main className="App__main">
         <Route
           path="/profile"
-          render={() => <Profile profilePage={props.state.profilePage} addPost={props.addPost} updateNewPostText={props.updateNewPostText}/>}
+          render={() => (
+            <Profile
+              profilePage={props.state.profilePage}
+              dispatch={props.dispatch}
+            />
+          )}
         />
         <Route path="/im" render={() => <Im state={props.state.imPage} />} />
         <Route path="/news" render={() => <News />} />

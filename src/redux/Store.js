@@ -7,7 +7,7 @@ const Store = {
         { id: 3, title: "ReactJS", content: "Post content number 3" },
         { id: 4, title: "VueJS", content: "Post content number 4" }
       ],
-      newPostText: 'Test post'
+      newPostText: "Test post"
     },
     imPage: {
       dialogs: [
@@ -26,28 +26,25 @@ const Store = {
     },
     sidebar: {
       friendsSidebar: [
-        { id: 1, name: "React", avatar: "https://cdn.svgporn.com/logos/react.svg" },
+        {
+          id: 1,
+          name: "React",
+          avatar: "https://cdn.svgporn.com/logos/react.svg"
+        },
         { id: 2, name: "Vue", avatar: "https://cdn.svgporn.com/logos/vue.svg" },
-        { id: 3, name: "Angular", avatar: "https://cdn.svgporn.com/logos/angular-icon.svg" },
-        { id: 4, name: "Svelte", avatar: "https://pbs.twimg.com/profile_images/1121395911849062400/7exmJEg4_400x400.png" }
+        {
+          id: 3,
+          name: "Angular",
+          avatar: "https://cdn.svgporn.com/logos/angular-icon.svg"
+        },
+        {
+          id: 4,
+          name: "Svelte",
+          avatar:
+            "https://pbs.twimg.com/profile_images/1121395911849062400/7exmJEg4_400x400.png"
+        }
       ]
     }
-  },
-
-  addPost() {
-    let newPost = {
-      id: this._state.profilePage.posts.length + 1,
-      title: `${this._state.profilePage.newPostText} - title`,
-      content: `${this._state.profilePage.newPostText} - content`
-    };
-    this._state.profilePage.posts.push(newPost);
-    this._state.profilePage.newPostText = '';
-    this._callSubscriber(this._state);
-  },
-
-  updateNewPostText(text) {
-    this._state.profilePage.newPostText = text;
-    this._callSubscriber(this._state);
   },
 
   subscribe(observer) {
@@ -55,13 +52,28 @@ const Store = {
   },
 
   _callSubscriber() {
-    console.log('State was changed!');
+    console.log("State was changed!");
   },
 
   getState() {
     return this._state;
-  }
+  },
 
+  dispatch(action) {
+    if (action.type === "ADD-POST") {
+      let newPost = {
+        id: this._state.profilePage.posts.length + 1,
+        title: `${this._state.profilePage.newPostText} - title`,
+        content: `${this._state.profilePage.newPostText} - content`
+      };
+      this._state.profilePage.posts.push(newPost);
+      this._state.profilePage.newPostText = "";
+      this._callSubscriber(this._state);
+    } else if (action.type === "UPDATE-NEW_POST_TEXT") {
+      this._state.profilePage.newPostText = action.text;
+      this._callSubscriber(this._state);
+    }
+  }
 };
 
 export default Store;
