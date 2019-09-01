@@ -25,7 +25,7 @@ function App(props) {
             />
           )}
         />
-        <Route path="/im" render={() => <Im state={props.state.imPage} />} />
+        <Route path="/im" render={() => <Im state={props.state.imPage} dispatch={props.dispatch}/>} />
         <Route path="/news" render={() => <News />} />
       </main>
       <Footer />

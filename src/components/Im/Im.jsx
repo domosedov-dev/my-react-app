@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Im.module.css";
 import { Dialog } from "./Dialog/Dialog";
 import { Message } from "./Message/Message";
+import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/Store";
 
 const Im = props => {
   const dialogElements = props.state.dialogs.map(el => (
@@ -12,11 +13,15 @@ const Im = props => {
     <Message message={el.message} key={el.id} />
   ));
 
-  let newPostElement = React.createRef();
+  let newMessageElement = React.createRef();
 
   const addPost = () => {
-    let text = newPostElement.current.value;
-    alert(text);
+    props.dispatch(addMessageActionCreator());
+  };
+
+  const onMessageChange = () => {
+    let text = newMessageElement.current.value;
+    props.dispatch(updateNewMessageTextActionCreator(text));
   };
 
   return (
@@ -25,7 +30,7 @@ const Im = props => {
 
       <div className={style.chat}>
         <div className="posts__form">
-          <textarea ref={newPostElement}></textarea>
+          <textarea onChange={onMessageChange} ref={newMessageElement} value={props.state.newMessageText}/>
           <br />
           <button onClick={addPost}>Add Post</button>
         </div>
