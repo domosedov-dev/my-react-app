@@ -2,26 +2,25 @@ import React from "react";
 import style from "./Im.module.css";
 import { Dialog } from "./Dialog/Dialog";
 import { Message } from "./Message/Message";
-import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/im-reducer";
 
 const Im = props => {
-  const dialogElements = props.state.dialogs.map(el => (
+  const dialogElements = props.dialogs.map(el => (
     <Dialog name={el.name} id={el.id} key={el.id} />
   ));
 
-  const messageElements = props.state.messages.map(el => (
+  const messageElements = props.messages.map(el => (
     <Message message={el.message} key={el.id} />
   ));
 
   let newMessageElement = React.createRef();
 
-  const addMessage = () => {
-    props.dispatch(addMessageActionCreator());
+  const OnAddMessage = () => {
+    props.addMessage();
   };
 
   const onMessageChange = () => {
     let text = newMessageElement.current.value;
-    props.dispatch(updateNewMessageTextActionCreator(text));
+    props.updateNewMessageText(text);
   };
 
   return (
@@ -30,9 +29,9 @@ const Im = props => {
 
       <div className={style.chat}>
         <div className="posts__form">
-          <textarea onChange={onMessageChange} ref={newMessageElement} value={props.state.newMessageText}/>
+          <textarea onChange={onMessageChange} ref={newMessageElement} value={props.newMessageText}/>
           <br />
-          <button onClick={addMessage}>Add Post</button>
+          <button onClick={OnAddMessage}>Add Post</button>
         </div>
         <hr />
         {messageElements}

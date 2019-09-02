@@ -6,26 +6,18 @@ import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Profile from "./components/Profile/Profile";
-import Im from "./components/Im/Im";
 import News from "./components/News/News";
+import ImContainer from "./components/Im/Im.Container";
 
 function App(props) {
   return (
     <div className="App">
       <Header />
       <Navbar />
-      <Sidebar state={props.state.sidebar} />
+      <Sidebar state={props.state.sidebar} store={props.store} />
       <main className="App__main">
-        <Route
-          path="/profile"
-          render={() => (
-            <Profile
-              profilePage={props.state.profilePage}
-              dispatch={props.dispatch}
-            />
-          )}
-        />
-        <Route path="/im" render={() => <Im state={props.state.imPage} dispatch={props.dispatch}/>} />
+        <Route path="/profile" render={() => <Profile store={props.store} />} />
+        <Route path="/im" render={() => <ImContainer store={props.store} />} />
         <Route path="/news" render={() => <News />} />
       </main>
       <Footer />
