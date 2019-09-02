@@ -15,7 +15,7 @@ const Im = props => {
 
   let newMessageElement = React.createRef();
 
-  const addPost = () => {
+  const addMessage = () => {
     props.dispatch(addMessageActionCreator());
   };
 
@@ -32,7 +32,7 @@ const Im = props => {
         <div className="posts__form">
           <textarea onChange={onMessageChange} ref={newMessageElement} value={props.state.newMessageText}/>
           <br />
-          <button onClick={addPost}>Add Post</button>
+          <button onClick={addMessage}>Add Post</button>
         </div>
         <hr />
         {messageElements}
