@@ -1,7 +1,23 @@
 const SEND_MESSAGE = "SEND_MESSAGE";
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT";
+const initialState = {
+  dialogs: [
+    { id: 1, name: "Sasha" },
+    { id: 2, name: "Sonya" },
+    { id: 3, name: "Svyatik" },
+    { id: 4, name: "Vladik" },
+    { id: 5, name: "React" }
+  ],
+  messages: [
+    { id: 1, message: "Hi!" },
+    { id: 2, message: "Hi!" },
+    { id: 3, message: "How are you?" },
+    { id: 4, message: "Fine!" }
+  ],
+  newMessageText: "New message"
+};
 
-export const imReducer = (state, action) => {
+const imReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEND_MESSAGE:
       let newMessage = {
