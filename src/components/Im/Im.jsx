@@ -2,7 +2,7 @@ import React from "react";
 import style from "./Im.module.css";
 import { Dialog } from "./Dialog/Dialog";
 import { Message } from "./Message/Message";
-import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/Store";
+import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/im-reducer";
 
 const Im = props => {
   const dialogElements = props.state.dialogs.map(el => (
