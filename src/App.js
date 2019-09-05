@@ -1,16 +1,20 @@
+// Libs
 import React from 'react';
 import { Route } from 'react-router-dom';
+// Style
 import './App.css';
+// Components
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
 import News from './components/News/News';
+// Container Components
 import ImContainer from './components/Im/Im.Container';
 import UsersContainer from './components/Users/Users.Container';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Header />
@@ -27,6 +31,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
