@@ -1,13 +1,19 @@
-import React from 'react';
-import style from './Sidebar.module.css';
 import FriendList from "./FriendsList/FriendList";
+import { connect } from "react-redux";
 
-const Sidebar = (props) => {
-    return (
-        <aside className={style.sidebar}>
-          <FriendList state={props.state.friendsSidebar}/>
-        </aside>
-    );
+const mapStateToProps = state => {
+  return {
+    sidebar: state.sidebar.friendsSidebar
+  };
 };
+
+const mapDispatchToProps = dispatch => {
+  return {};
+};
+
+const Sidebar = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FriendList);
 
 export default Sidebar;

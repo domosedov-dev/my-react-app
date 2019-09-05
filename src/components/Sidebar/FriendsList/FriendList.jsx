@@ -3,7 +3,7 @@ import style from './FriendList.module.css';
 import Friend from "./Friend/Friend";
 
 const FriendList = props => {
-    const friendsItems = props.state.map(el => {
+    const friendsItems = props.sidebar.map(el => {
         const {id, name, avatar} = el;
         return <Friend key={id} name={name} avatar={avatar}/>
     });

@@ -9,15 +9,17 @@ import Profile from "./components/Profile/Profile";
 import News from "./components/News/News";
 import ImContainer from "./components/Im/Im.Container";
 
-function App(props) {
+function App() {
   return (
     <div className="App">
       <Header />
       <Navbar />
-      <Sidebar state={props.state.sidebar} store={props.store} />
+      <aside>
+          <Sidebar />
+      </aside>
       <main className="App__main">
-        <Route path="/profile" render={() => <Profile store={props.store} />} />
-        <Route path="/im" render={() => <ImContainer store={props.store} />} />
+        <Route path="/profile" render={() => <Profile />} />
+        <Route path="/im" render={() => <ImContainer />} />
         <Route path="/news" render={() => <News />} />
       </main>
       <Footer />

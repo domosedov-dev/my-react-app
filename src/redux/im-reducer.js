@@ -1,5 +1,6 @@
 const SEND_MESSAGE = "SEND_MESSAGE";
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT";
+
 const initialState = {
   dialogs: [
     { id: 1, name: "Sasha" },
@@ -19,17 +20,23 @@ const initialState = {
 
 const imReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SEND_MESSAGE:
+    case SEND_MESSAGE: {
       let newMessage = {
         id: state.messages.length + 1,
         message: `${state.newMessageText}`
       };
-      state.messages.push(newMessage);
-      state.newMessageText = "";
-      return state;
-    case UPDATE_NEW_MESSAGE_TEXT:
-      state.newMessageText = action.text;
-      return state;
+      return {
+        ...state,
+        messages: [...state.messages, newMessage],
+        newMessageText: ""
+      };
+    }
+    case UPDATE_NEW_MESSAGE_TEXT: {
+      // Старый вариант
+      // let stateCopy = { ...state, newMessageText: action.text };
+      // return stateCopy;
+      return { ...state, newMessageText: action.text };
+    }
     default:
       return state;
   }

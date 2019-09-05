@@ -1,6 +1,7 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
 
+// Начальное состояние State(по умолчанию)
 const initialState = {
   posts: [
     { id: 1, title: "Hello", content: "Post content number 1" },
@@ -13,18 +14,24 @@ const initialState = {
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_POST:
+    case ADD_POST: {
       let newPost = {
         id: state.posts.length + 1,
         title: `${state.newPostText} - title`,
         content: `${state.newPostText} - content`
       };
-      state.posts.push(newPost);
-      state.newPostText = "";
-      return state;
-    case UPDATE_NEW_POST_TEXT:
-      state.newPostText = action.text;
-      return state;
+      // Old variant
+      // let stateCopy = { ...state };
+      // stateCopy.posts = [...state.posts];
+      // stateCopy.posts.push(newPost);
+      // stateCopy.newPostText = "";
+      // return stateCopy;
+
+      return { ...state, posts: [...state.posts, newPost], newPostText: "" };
+    }
+    case UPDATE_NEW_POST_TEXT: {
+      return { ...state, newPostText: action.text };
+    }
     default:
       return state;
   }

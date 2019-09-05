@@ -14,22 +14,24 @@ const Im = props => {
 
   let newMessageElement = React.createRef();
 
-  const OnAddMessage = () => {
-    props.addMessage();
-  };
-
   const onMessageChange = () => {
     let text = newMessageElement.current.value;
     props.updateNewMessageText(text);
+  };
+  const OnAddMessage = () => {
+    props.addMessage();
   };
 
   return (
     <div className={style.im}>
       <div className={style.dialogs}>{dialogElements}</div>
-
       <div className={style.chat}>
         <div className="posts__form">
-          <textarea onChange={onMessageChange} ref={newMessageElement} value={props.newMessageText}/>
+          <textarea
+            onChange={onMessageChange}
+            ref={newMessageElement}
+            value={props.newMessageText}
+          />
           <br />
           <button onClick={OnAddMessage}>Add Post</button>
         </div>
