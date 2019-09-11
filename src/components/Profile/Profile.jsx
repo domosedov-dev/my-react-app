@@ -3,10 +3,10 @@ import style from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PostsContainer from "./Posts/Posts.Container";
 
-const Profile = () => {
+const Profile = props => {
   return (
     <div className={style.profile}>
-      <ProfileInfo />
+      <ProfileInfo profile={props.profile} />
       <PostsContainer />
     </div>
   );

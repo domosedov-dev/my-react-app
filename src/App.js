@@ -8,11 +8,11 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
-import Profile from './components/Profile/Profile';
 import News from './components/News/News';
 // Container Components
 import ImContainer from './components/Im/Im.Container';
-import UsersContainer from './components/Users/Users.Container';
+import UsersContainer from './components/Users/UsersContainer';
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 const App = () => {
   return (
@@ -23,7 +23,7 @@ const App = () => {
         <Sidebar />
       </aside>
       <main className="App__main">
-        <Route path="/profile" render={() => <Profile />} />
+        <Route path="/profile" render={() => <ProfileContainer />} />
         <Route path="/im" render={() => <ImContainer />} />
         <Route path="/news" render={() => <News />} />
         <Route path="/users" render={() => <UsersContainer />} />
