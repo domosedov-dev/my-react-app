@@ -4,6 +4,11 @@
     animation: logo-spin infinite 2s linear;
 }
 
+.login>a {
+    font-size: 20px;
+    color: #fff;
+}
+
 @keyframes logo-spin {
     from {
         transform: rotate(0deg);
@@ -16,7 +21,7 @@
 .header {
     grid-area: header;
     display: grid;
-    grid-template-columns: 1fr 7fr;
+    grid-template-columns: 1fr 7fr 4fr;
     align-items: center;
     justify-items: center;
     background-color: #455a64;
@@ -24,9 +29,10 @@
     border-radius: 5px;
 }
 
-.title {
+.title>h1 {
+    display: inline-block;
     text-transform: uppercase;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-weight: 300;
 }
 

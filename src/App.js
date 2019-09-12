@@ -1,28 +1,30 @@
 // Libs
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React from "react";
+import { Route } from "react-router-dom";
 // Style
-import './App.css';
+import "./App.css";
 // Components
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import Navbar from './components/Navbar/Navbar';
-import Sidebar from './components/Sidebar/Sidebar';
-import News from './components/News/News';
+import Footer from "./components/Footer/Footer";
+import Navbar from "./components/Navbar/Navbar";
+import Sidebar from "./components/Sidebar/Sidebar";
+import News from "./components/News/News";
 // Container Components
-import ImContainer from './components/Im/Im.Container';
-import UsersContainer from './components/Users/UsersContainer';
+import ImContainer from "./components/Im/Im.Container";
+import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import Welcome from "./components/Welcome/Welcome";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App = () => {
   return (
     <div className="App">
-      <Header />
+      <HeaderContainer />
       <Navbar />
       <aside>
         <Sidebar />
       </aside>
       <main className="App__main">
+        <Route exact path="/" render={() => <Welcome />} />
         <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
         <Route path="/im" render={() => <ImContainer />} />
         <Route path="/news" render={() => <News />} />
