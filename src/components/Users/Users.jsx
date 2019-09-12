@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Users.module.css";
 import avatar from "../../assets/images/avatar.png";
 import { NavLink } from "react-router-dom";
+import * as axios from "axios";
 
 const Users = props => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -48,7 +49,21 @@ const Users = props => {
                 {user.followed ? (
                   <button
                     onClick={() => {
-                      props.unFollow(user.id);
+                      axios
+                        .delete(
+                          `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                          {
+                            withCredentials: true,
+                            headers: {
+                              "API-KEY": "8da95235-ced0-4dda-a2e9-3cbb504e5bbf"
+                            }
+                          }
+                        )
+                        .then(response => {
+                          if (response.data.resultCode === 0) {
+                            props.unFollow(user.id);
+                          }
+                        });
                     }}
                   >
                     Unfollow
@@ -56,7 +71,22 @@ const Users = props => {
                 ) : (
                   <button
                     onClick={() => {
-                      props.follow(user.id);
+                      axios
+                        .post(
+                          `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                          {},
+                          {
+                            withCredentials: true,
+                            headers: {
+                              "API-KEY": "8da95235-ced0-4dda-a2e9-3cbb504e5bbf"
+                            }
+                          }
+                        )
+                        .then(response => {
+                          if (response.data.resultCode === 0) {
+                            props.follow(user.id);
+                          }
+                        });
                     }}
                   >
                     Follow
