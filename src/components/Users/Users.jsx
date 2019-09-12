@@ -32,7 +32,6 @@ const Users = props => {
       {props.users.map(user => {
         return (
           <div key={user.id}>
-            <h1>hello</h1>
             <span>
               <div>
                 <NavLink to={`/profile/${user.id}`}>

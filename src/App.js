@@ -23,7 +23,7 @@ const App = () => {
         <Sidebar />
       </aside>
       <main className="App__main">
-        <Route path="/profile" render={() => <ProfileContainer />} />
+        <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
         <Route path="/im" render={() => <ImContainer />} />
         <Route path="/news" render={() => <News />} />
         <Route path="/users" render={() => <UsersContainer />} />
