@@ -8,12 +8,14 @@ import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import News from "./components/News/News";
+import Login from "./components/Login/Login";
 // Container Components
 import ImContainer from "./components/Im/Im.Container";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import Welcome from "./components/Welcome/Welcome";
 import HeaderContainer from "./components/Header/HeaderContainer";
+
 
 const App = () => {
   return (
@@ -29,6 +31,7 @@ const App = () => {
         <Route path="/im" render={() => <ImContainer />} />
         <Route path="/news" render={() => <News />} />
         <Route path="/users" render={() => <UsersContainer />} />
+        <Route path="/login" render={() => <Login />} />
       </main>
       <Footer />
     </div>

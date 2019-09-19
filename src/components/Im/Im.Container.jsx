@@ -9,7 +9,8 @@ const mapStateToProps = state => {
   return {
     dialogs: state.imPage.dialogs,
     messages: state.imPage.messages,
-    newMessageText: state.imPage.newMessageText
+    newMessageText: state.imPage.newMessageText,
+    isAuth: state.auth.isAuth
   };
 };
 

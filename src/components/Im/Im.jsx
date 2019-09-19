@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Im.module.css";
 import { Dialog } from "./Dialog/Dialog";
 import { Message } from "./Message/Message";
+import { Redirect } from "react-router-dom";
 
 const Im = props => {
   const dialogElements = props.dialogs.map(el => (
@@ -21,6 +22,8 @@ const Im = props => {
   const OnAddMessage = () => {
     props.addMessage();
   };
+
+  if (!props.isAuth) return <Redirect to={"/login"} />;
 
   return (
     <div className={style.im}>
