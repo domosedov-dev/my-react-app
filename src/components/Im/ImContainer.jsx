@@ -4,7 +4,8 @@ import {
 } from "../../redux/im-reducer";
 import Im from "./Im";
 import { connect } from "react-redux";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 const mapStateToProps = state => {
   return {
@@ -13,8 +14,6 @@ const mapStateToProps = state => {
     newMessageText: state.imPage.newMessageText
   };
 };
-
-
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -27,11 +26,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-let AuthRedirectComponent = withAuthRedirect(Im);
-
-const ImContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AuthRedirectComponent);
-
-export default ImContainer;
+export default compose(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    ),
+    withAuthRedirect
+)(Im);

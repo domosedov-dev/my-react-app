@@ -7,6 +7,8 @@ const Profile = props => {
   return (
     <div className={style.profile}>
       <ProfileInfo profile={props.profile} />
+        <hr/>
+        <h2>My Posts</h2>
       <PostsContainer />
     </div>
   );
