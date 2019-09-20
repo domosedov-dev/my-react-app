@@ -11,6 +11,12 @@ const instance = axios.create({
 export const profileAPI = {
   getProfile(userId = 2) {
     return instance.get(`profile/${userId}`).then(response => response.data);
+  },
+  getStatus(userId) {
+    return instance.get(`profile/status/${userId}`);
+  },
+  updateStatus(status) {
+    return instance.put(`profile/status`, { status: status });
   }
 };
 
@@ -30,6 +36,6 @@ export const usersAPI = {
 
 export const authAPI = {
   me() {
-    return instance.get(`auth/me`)
+    return instance.get(`auth/me`);
   }
 };
