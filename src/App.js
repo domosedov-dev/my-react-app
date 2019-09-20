@@ -10,7 +10,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import News from "./components/News/News";
 import Login from "./components/Login/Login";
 // Container Components
-import ImContainer from "./components/Im/Im.Container";
+import ImContainer from "./components/Im/ImContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import Welcome from "./components/Welcome/Welcome";
