@@ -1,7 +1,4 @@
-import {
-  addMessageActionCreator,
-  updateNewMessageTextActionCreator
-} from "../../redux/im-reducer";
+import { addMessageActionCreator } from "../../redux/im-reducer";
 import Im from "./Im";
 import { connect } from "react-redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
@@ -17,19 +14,16 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateNewMessageText: text => {
-      dispatch(updateNewMessageTextActionCreator(text));
-    },
-    addMessage: () => {
-      dispatch(addMessageActionCreator());
+    addMessage: newMessageText => {
+      dispatch(addMessageActionCreator(newMessageText));
     }
   };
 };
 
 export default compose(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    ),
-    withAuthRedirect
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withAuthRedirect
 )(Im);
