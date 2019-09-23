@@ -1,29 +1,26 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { authAPI } from "../../api/api";
 import { Input } from "../common/FormControls/formControls";
 import { maxLength, required } from "../../utils/validators/validators";
+import {connect} from "react-redux";
+import {login} from "../../redux/auth-reducer";
+import {Redirect} from "react-router-dom";
 
-let maxLength15 = maxLength(15);
+// Custom Validators
+let maxLength50 = maxLength(50);
 
 const Login = props => {
   const onSubmit = formData => {
     const { email, password, rememberMe } = formData;
-
-    // test
-    authAPI
-      .login(email, password, rememberMe)
-      .then(response => response.data)
-      .then(data => {
-        if (data.resultCode !== 0) {
-          console.dir(data.messages);
-        } else {
-          console.log(data.data.userId);
-        }
-      });
-    // end test
+    props.login(email, password, rememberMe);
   };
 
+  // Если пользователь залогинен, то редирект на главную
+  if(props.isAuth) {
+      return <Redirect to={"/profile"}/>
+  }
+
+  // Иначе возвращаем форму Login
   return (
     <>
       <h1>LoginForm</h1>
@@ -39,7 +36,7 @@ const LoginForm = props => {
     <form onSubmit={props.handleSubmit}>
       <div>
         <Field
-          validate={[required, maxLength15]}
+          validate={[required, maxLength50]}
           name={"email"}
           placeholder={"Email"}
           component={Input}
@@ -47,7 +44,7 @@ const LoginForm = props => {
       </div>
       <div>
         <Field
-          validate={[required, maxLength15]}
+          validate={[required, maxLength50]}
           name={"password"}
           type={"password"}
           placeholder={"Password"}
@@ -69,4 +66,10 @@ const LoginReduxForm = reduxForm({
   form: "login"
 })(LoginForm);
 
-export default Login;
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth
+});
+
+export default connect(mapStateToProps, {
+    login
+})(Login);
