@@ -44,7 +44,7 @@ const usersReducer = (state = initialState, action) => {
     case SET_CURRENT_PAGE:
       return {
         ...state,
-        currentPage: action.pageNumber
+        currentPage: action.currentPage
       };
 
     case SET_USERS:
@@ -84,9 +84,9 @@ export const toggleFollowingProgress = (isFetching, userId) => ({
 export const followSuccess = userId => ({ type: FOLLOW, userId });
 export const unfollowSuccess = userId => ({ type: UNFOLLOW, userId });
 export const setUsers = users => ({ type: SET_USERS, users });
-export const setCurrentPage = pageNumber => ({
+export const setCurrentPage = currentPage => ({
   type: SET_CURRENT_PAGE,
-  pageNumber
+  currentPage
 });
 export const setUsersTotalCount = count => ({
   type: SET_USERS_TOTAL_COUNT,
@@ -96,8 +96,9 @@ export const setUsersTotalCount = count => ({
 
 
 // Thunk Creators
-export const getUsers = (currentPage, pageSize) => dispatch => {
+export const requestUsers = (currentPage, pageSize) => dispatch => {
   dispatch(toggleIsFetching(true));
+  dispatch(setCurrentPage(currentPage));
   usersAPI.getUsers(currentPage, pageSize).then(data => {
     dispatch(toggleIsFetching(false));
     dispatch(setUsers(data.items));

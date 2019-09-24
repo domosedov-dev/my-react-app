@@ -3,7 +3,7 @@ import style from "./Posts.module.css";
 import Post from "./Post/Post";
 import { Field, reduxForm } from "redux-form";
 import { maxLength, required } from "../../../utils/validators/validators";
-import { Textarea } from "../../common/FormControls/formControls";
+import {Input, Textarea} from "../../common/FormControls/formControls";
 
 // Custom validators
 const maxLength20 = maxLength(20);
@@ -32,7 +32,7 @@ let AddPostForm = props => {
   return (
     <form onSubmit={props.handleSubmit} className="posts__form">
       <Field
-        component={"input"}
+        component={Input}
         name={"title"}
         validate={[required, maxLength20]}
       />
