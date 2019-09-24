@@ -12,14 +12,35 @@ import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    let userId = this.props.match.params.userId;
 
-    if (!userId) {
-      userId = this.props.authorizedUserId;
+    // // Получаем id пользователя из GET параметров
+    // let userId = this.props.match.params.userId;
+    //
+    // // Если в GET пусто, то получаем id авторизованного пользователя
+    // if (!userId) {
+    //   userId = this.props.authorizedUserId;
+    //   // Если нет авторизованного пользователя, то делаем редирект на страницу логина
+    //   if (!userId) {
+    //     this.props.history.push("/login");
+    //   } else {
+    //       this.props.getUserProfile(userId);
+    //       this.props.getStatus(userId);
+    //   }
+    // } else {
+    //     this.props.getUserProfile(userId);
+    //     this.props.getStatus(userId);
+    // }
+
+    // Тестовый вариант
+    let userId = this.props.match.params.userId || this.props.authorizedUserId;
+
+    if(!userId) {
+      this.props.history.push("/login");
+    } else {
+        this.props.getUserProfile(userId);
+        this.props.getStatus(userId);
     }
 
-    this.props.getUserProfile(userId);
-    this.props.getStatus(userId);
   }
 
   render() {
