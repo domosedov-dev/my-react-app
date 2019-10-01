@@ -22,26 +22,39 @@ import {
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.requestUsers(this.props.currentPage, this.props.pageSize);
+    const { requestUsers, currentPage, pageSize } = this.props;
+    requestUsers(currentPage, pageSize);
   }
 
   onPageChanged = pageNumber => {
-    this.props.requestUsers(pageNumber, this.props.pageSize);
+    let { requestUsers, pageSize } = this.props;
+    requestUsers(pageNumber, pageSize);
   };
 
   render() {
+    let {
+      isFetching,
+      totalUsersCount,
+      pageSize,
+      currentPage,
+      users,
+      followingInProgress,
+      unfollow,
+      follow
+    } = this.props;
+
     return (
       <>
-        {this.props.isFetching ? <Preloader /> : null}
+        {isFetching ? <Preloader /> : null}
         <Users
-          totalUsersCount={this.props.totalUsersCount}
-          pageSize={this.props.pageSize}
-          currentPage={this.props.currentPage}
-          users={this.props.users}
+          totalUsersCount={totalUsersCount}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          users={users}
           onPageChanged={this.onPageChanged}
-          followingInProgress={this.props.followingInProgress}
-          unfollow={this.props.unfollow}
-          follow={this.props.follow}
+          followingInProgress={followingInProgress}
+          unfollow={unfollow}
+          follow={follow}
         />
       </>
     );
@@ -49,7 +62,6 @@ class UsersContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  // users: getUsers(state),
   users: getUsers(state),
   pageSize: getPageSize(state),
   totalUsersCount: getTotalUsersCount(state),

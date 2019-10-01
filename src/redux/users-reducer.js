@@ -93,37 +93,65 @@ export const setUsersTotalCount = count => ({
   count
 });
 
-
-
 // Thunk Creators
-export const requestUsers = (currentPage, pageSize) => dispatch => {
+export const requestUsers = (currentPage, pageSize) => async dispatch => {
   dispatch(toggleIsFetching(true));
   dispatch(setCurrentPage(currentPage));
-  usersAPI.getUsers(currentPage, pageSize).then(data => {
-    dispatch(toggleIsFetching(false));
-    dispatch(setUsers(data.items));
-    dispatch(setUsersTotalCount(data.totalCount));
-  });
+  let response = await usersAPI.getUsers(currentPage, pageSize);
+  dispatch(toggleIsFetching(false));
+  dispatch(setUsers(response.items));
+  dispatch(setUsersTotalCount(response.totalCount));
 };
 
-export const follow = (userId) => dispatch => {
+// refactor
+const followUnfollowFlow = async (
+  dispatch,
+  userId,
+  apiMethod,
+  actionCreator
+) => {
   dispatch(toggleFollowingProgress(true, userId));
-  usersAPI.follow(userId).then(response => {
-    if (response.resultCode === 0) {
-      dispatch(followSuccess(userId));
-    }
-    dispatch(toggleFollowingProgress(false, userId));
-  });
+  let response = await apiMethod(userId);
+  if (response.resultCode === 0) {
+    dispatch(actionCreator(userId));
+  }
+  dispatch(toggleFollowingProgress(false, userId));
 };
 
-export const unfollow = (userId) => dispatch => {
-  dispatch(toggleFollowingProgress(true, userId));
-  usersAPI.unfollow(userId).then(response => {
-    if (response.resultCode === 0) {
-      dispatch(unfollowSuccess(userId));
-    }
-    dispatch(toggleFollowingProgress(false, userId));
-  });
+export const follow = userId => async dispatch => {
+  await followUnfollowFlow(
+    dispatch,
+    userId,
+    usersAPI.follow.bind(usersAPI),
+    followSuccess
+  );
+};
+
+export const unfollow = userId => async dispatch => {
+  await followUnfollowFlow(
+    dispatch,
+    userId,
+    usersAPI.unfollow.bind(usersAPI),
+    unfollowSuccess
+  );
 };
 
 export default usersReducer;
+
+// export const follow = userId => async dispatch => {
+//   dispatch(toggleFollowingProgress(true, userId));
+//   let response = await usersAPI.follow(userId);
+//   if (response.resultCode === 0) {
+//     dispatch(followSuccess(userId));
+//   }
+//   dispatch(toggleFollowingProgress(false, userId));
+// };
+//
+// export const unfollow = userId => async dispatch => {
+//   dispatch(toggleFollowingProgress(true, userId));
+//   let response = await usersAPI.unfollow(userId);
+//   if (response.resultCode === 0) {
+//     dispatch(unfollowSuccess(userId));
+//   }
+//   dispatch(toggleFollowingProgress(false, userId));
+// };

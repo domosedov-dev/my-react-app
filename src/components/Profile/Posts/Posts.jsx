@@ -9,7 +9,7 @@ import {Input, Textarea} from "../../common/FormControls/formControls";
 const maxLength20 = maxLength(20);
 
 const Posts = React.memo(props => {
-    const postsElements = props.posts.map(post => {
+    const postsElements = [...props.posts].reverse().map(post => {
         const {title, content, id} = post;
         return <Post title={title} content={content} key={id}/>;
     });
