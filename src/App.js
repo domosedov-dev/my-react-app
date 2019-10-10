@@ -1,7 +1,7 @@
 // Libs
 import React, { Component } from "react";
-import { Route, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
+import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {connect, Provider} from "react-redux";
 import { compose } from "redux";
 
 // Style
@@ -22,6 +22,7 @@ import Welcome from "./components/Welcome/Welcome";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import { initializeApp } from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import store from "./redux/redux-store";
 
 class App extends Component {
   componentDidMount() {
@@ -57,7 +58,7 @@ const mapStateToProps = state => ({
   initialized: state.app.initialized
 });
 
-export default compose(
+let AppContainer = compose(
   connect(
     mapStateToProps,
     {
@@ -66,3 +67,16 @@ export default compose(
   ),
   withRouter
 )(App);
+
+let MainApp = (props) => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <AppContainer />
+            </Provider>
+        </BrowserRouter>
+    )
+};
+
+export default MainApp;
+

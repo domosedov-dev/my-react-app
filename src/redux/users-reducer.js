@@ -137,21 +137,3 @@ export const unfollow = userId => async dispatch => {
 };
 
 export default usersReducer;
-
-// export const follow = userId => async dispatch => {
-//   dispatch(toggleFollowingProgress(true, userId));
-//   let response = await usersAPI.follow(userId);
-//   if (response.resultCode === 0) {
-//     dispatch(followSuccess(userId));
-//   }
-//   dispatch(toggleFollowingProgress(false, userId));
-// };
-//
-// export const unfollow = userId => async dispatch => {
-//   dispatch(toggleFollowingProgress(true, userId));
-//   let response = await usersAPI.unfollow(userId);
-//   if (response.resultCode === 0) {
-//     dispatch(unfollowSuccess(userId));
-//   }
-//   dispatch(toggleFollowingProgress(false, userId));
-// };
