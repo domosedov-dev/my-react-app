@@ -2,6 +2,7 @@ import React from 'react';
 import style from './Users.module.css';
 import avatar from '../../assets/images/avatar.png';
 import { NavLink } from 'react-router-dom';
+import Paginator from "../common/Paginator/Paginator";
 
 const Users = ({
   currentPage,
@@ -23,21 +24,26 @@ const Users = ({
 
   return (
     <div>
-      <div className={style.pagination}>
-        {pages.map((page, index) => {
-          return (
-            <span
-              onClick={() => {
-                onPageChanged(page);
-              }}
-              className={currentPage === page ? style.selectedPage : null}
-              key={index}
-            >
-              {page}
-            </span>
-          );
-        })}
-      </div>
+
+
+      <Paginator totalItemsCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage} onPageChanged={onPageChanged} portionSize={10}/>
+
+      {/*<div className={style.pagination}>*/}
+      {/*  {pages.map((page, index) => {*/}
+      {/*    return (*/}
+      {/*      <span*/}
+      {/*        onClick={() => {*/}
+      {/*          onPageChanged(page);*/}
+      {/*        }}*/}
+      {/*        className={currentPage === page ? style.selectedPage : null}*/}
+      {/*        key={index}*/}
+      {/*      >*/}
+      {/*        {page}*/}
+      {/*      </span>*/}
+      {/*    );*/}
+      {/*  })}*/}
+      {/*</div>*/}
+
       {users.map(user => {
         return (
           <div key={user.id}>
